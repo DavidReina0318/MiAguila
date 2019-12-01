@@ -1,2 +1,0 @@
-D:\Users\Usuario\Documents\Prueba Técnica MiÁguila\Backend Viajes\obj\Debug\Backend Viajes.njsprojAssemblyReference.cache
-D:\Users\Usuario\Documents\Prueba Técnica MiÁguila\Backend Viajes\bin\Microsoft.NodejsTools.WebRole.dll
