@@ -1,0 +1,292 @@
+swagger: "2.0"
+info:
+  description: "This is a API developed for a job position for the company Mi Águila."
+  version: "1.0.0"
+  title: "Viajes Mi Águila"
+  contact:
+    email: "david.reina@outlook.es"
+basePath: "/api"
+tags:
+- name: "trip"
+  description: "Contains all the information of each trip"
+schemes:
+- "https"
+- "http"
+paths:
+  /searchTrips:
+    get:
+      tags:
+      - "trip"
+      summary: "Search all trips in the database"
+      description: ""
+      operationId: "searchTrips"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        200:
+          description: "All the trips stored"
+          schema:
+            $ref: "#/definitions/trip"
+  /searchTrips/city:
+    get:
+      tags:
+      - "trip"
+      summary: "Search all trips of the city indicated"
+      operationId: "searchTripsByCity"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "city"
+        in: "query"
+        description: "City values that need to be considered for filter"
+        required: true
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/trip"
+  /createTrip:
+    post:
+      tags:
+      - "trip"
+      summary: "Creates a new trip"
+      description: ""
+      operationId: "createTrip"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "start"
+        in: "formData"
+        description: "Information about the trip requested by the customer"
+        required: true
+        type: "object"
+      - name: "end"
+        in: "formData"
+        description: "Information about the result of the trip"
+        required: true
+        type: "object"
+      - name: "country"
+        in: "formData"
+        description: "Name of the country where the service is going to be executed"
+        required: true
+        type: "object"
+      - name: "city"
+        in: "formData"
+        description: "Name of the city where the service is going to be executed"
+        required: true
+        type: "object"
+      - name: "passenger"
+        in: "formData"
+        description: "Name of the passenger"
+        required: true
+        type: "object"
+      - name: "driver"
+        in: "formData"
+        description: "Name of the driver"
+        required: true
+        type: "object"
+      - name: "car"
+        in: "formData"
+        description: "Information of the car of the driver"
+        required: true
+        type: "object"
+      - name: "status"
+        in: "formData"
+        description: "Status of the trip"
+        required: true
+        type: "string"
+      - name: "check_code"
+        in: "formData"
+        description: "Code of the trip"
+        required: true
+        type: "string"
+      - name: "price"
+        in: "formData"
+        description: "Price paid by the customer for the trip"
+        required: true
+        type: "double"
+      - name: "driver_location"
+        in: "formData"
+        description: "Information of the location of the driver"
+        required: true
+        type: "object"
+      responses:
+        200:
+          description: "Trip created correctly"
+  /updateTrip:
+    post:
+      tags:
+      - "trip"
+      summary: "Updates an existing trip"
+      description: ""
+      operationId: "updateTrip"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "start"
+        in: "formData"
+        description: "Information about the trip requested by the customer"
+        required: true
+        type: "object"
+      - name: "end"
+        in: "formData"
+        description: "Information about the result of the trip"
+        required: true
+        type: "object"
+      - name: "country"
+        in: "formData"
+        description: "Name of the country where the service is going to be executed"
+        required: true
+        type: "object"
+      - name: "city"
+        in: "formData"
+        description: "Name of the city where the service is going to be executed"
+        required: true
+        type: "object"
+      - name: "passenger"
+        in: "formData"
+        description: "Name of the passenger"
+        required: true
+        type: "object"
+      - name: "driver"
+        in: "formData"
+        description: "Name of the driver"
+        required: true
+        type: "object"
+      - name: "car"
+        in: "formData"
+        description: "Information of the car of the driver"
+        required: true
+        type: "object"
+      - name: "status"
+        in: "formData"
+        description: "Status of the trip"
+        required: true
+        type: "string"
+      - name: "check_code"
+        in: "formData"
+        description: "Code of the trip"
+        required: true
+        type: "string"
+      - name: "price"
+        in: "formData"
+        description: "Price paid by the customer for the trip"
+        required: true
+        type: "double"
+      - name: "driver_location"
+        in: "formData"
+        description: "Information of the location of the driver"
+        required: true
+        type: "object"
+      responses:
+        200:
+          description: "Trip updated correctly"
+  
+definitions:
+  start:
+    type: "object"
+    properties:
+      date:
+        type: "datetime"
+        format: "date-time"
+      pickup_address:
+        type: "string"
+      pickup_location:
+        type: "object"
+        properties: 
+          type:
+            type: "string"
+          coordinates:
+            type: "array"
+            description: "Coords start"
+  end:
+    type: "object"
+    properties:
+      date:
+        type: "datetime"
+        format: "date-time"
+      pickup_address:
+        type: "string"
+      pickup_location:
+        type: "object"
+        properties: 
+          type:
+            type: "string"
+          coordinates:
+            type: "array"
+            description: "Coords end"
+            
+  country:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        
+  city:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        
+  passenger:
+    type: "object"
+    properties:
+      first_name:
+        type: "string"
+      last_name:
+        type: "string"
+        
+  driver:
+    type: "object"
+    properties:
+      first_name:
+        type: "string"
+      last_name:
+        type: "string"
+        
+  car:
+    type: "object"
+    properties:
+      plate:
+        type: "string"
+        
+  status:
+    type: "string"
+    description: "trip status of the service"
+    enum:
+    - "OnWay"
+    - "Near"
+    - "Started"
+    
+  check_code:
+    type: "string"
+    
+  price:
+    type: "double"
+    
+  driver_location:
+    type: "object"
+    properties: 
+      type:
+        type: "string"
+      coordinates:
+        type: "array"
+        description: "Coords of the driver"
